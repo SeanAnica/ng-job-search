@@ -1,0 +1,17 @@
+.company-logo-style {
+    width: 3.125rem;
+    height: 3.125rem;
+    object-fit: cover;
+}
+
+/* Inactive star */
+.star-button .icon-star {
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+/* Active (favorited) star */
+.star-button.active .icon-star {
+    color: #ffc107;
+    background-color: #ffc107;
+}

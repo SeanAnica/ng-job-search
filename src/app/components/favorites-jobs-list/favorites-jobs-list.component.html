@@ -1,0 +1,8 @@
+<div class="container mt-4" *ngIf="(favoriteJobs$ | async) as favoriteJobs">
+  <div *ngFor="let job of favoriteJobs">
+      <app-job-item [job]="job" [readonly]="true"></app-job-item>
+  </div>
+  <p *ngIf="favoriteJobs.length === 0" class="text-center">No favorite jobs to display</p>
+</div>
+
+

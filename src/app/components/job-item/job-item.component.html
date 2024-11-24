@@ -1,0 +1,21 @@
+<div *ngIf="job" class="d-flex align-items-center justify-content-between p-3">
+  <!-- Logo et informations -->
+  <div class="d-flex align-items-center">
+    <img [src]="job.companyLogo" alt="Company Logo" class="me-3 rounded company-logo-style" />
+    <div>
+      <a [routerLink]="['/jobs', job.id]">
+        <h5 class="mb-1">{{ job.title }}</h5>
+      </a>
+      <div class="d-flex gap-2 mb-0 text-muted">
+        <p>Company: {{ job.companyName }}</p>
+        <p>Reference: {{ job.reference }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icône pour favoris -->
+  <button *ngIf="!readonly" class="bg-transparent p-0 star-button" (click)="toggleFavorite(job.id)"
+    [class.active]="isFavorite" aria-label="Toggle Favorite job">
+    <span [id]="'star-{{job.id}}'" class="icon-star"></span>
+  </button>
+</div>
