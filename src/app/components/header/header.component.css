@@ -1,0 +1,24 @@
+.tab-button {
+    background-color: transparent;
+    color: gray;
+    font-size: 1.2rem;
+    padding: 1rem 8rem;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    transition: gray 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: gray;
+    color: white;
+}
+
+.tab-button.active-tab {
+    background-color: skyblue;
+    color: white;
+}
+
+.tab-button:focus {
+    outline: none;
+}
