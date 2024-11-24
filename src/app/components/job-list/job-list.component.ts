@@ -1,17 +1,34 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Job } from '../../interfaces/job';
-import { JobService } from '../../services/job.service';
+import { JobService, JobSummary } from '../../services/job.service';
+import { CommonModule } from '@angular/common';
+import { JobItemComponent } from '../job-item/job-item.component';
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, JobItemComponent],
   templateUrl: './job-list.component.html',
   styleUrl: './job-list.component.css'
 })
 export class JobListComponent {
   private readonly _jobService = inject(JobService);
 
-  protected allJobs$: Observable<Job[]> = this._jobService.getJobs();
+  protected allJobs$: Observable<JobSummary[]> = this._jobService.getJobs();
+
+  /**
+   * Adds or removes job id from favorites when clicking on the star.
+   * @param jobId job id to add or delete
+   */
+  protected manageToggleFavorite(jobId: string): void {
+    if (this._jobService.isFavorite(jobId)) {
+      this._jobService.removeFavorite(jobId);
+    } else {
+      this._jobService.addFavorite(jobId);
+    }
+  }
+
+  protected isFavorite(jobId: string): boolean {
+    return this._jobService.isFavorite(jobId);
+  }
 }

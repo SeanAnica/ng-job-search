@@ -1,1 +1,6 @@
-<p>job-list works!</p>
+<div class="container mt-4" *ngIf="allJobs$ |async as allJobs">
+  <div *ngFor="let job of allJobs">
+    <app-job-item [job]="job" [isFavorite]="isFavorite(job.id)"
+      (toggleFavoriteJob)="manageToggleFavorite($event)"></app-job-item>
+  </div>
+</div>
