@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { JobService, JobSummary } from '../../services/job.service';
 import { CommonModule } from '@angular/common';
 import { JobItemComponent } from '../job-item/job-item.component';
+import { FavoriteJobService } from '../../services/favorite-job.service';
 
 @Component({
   selector: 'app-job-list',
@@ -13,6 +14,7 @@ import { JobItemComponent } from '../job-item/job-item.component';
 })
 export class JobListComponent {
   private readonly _jobService = inject(JobService);
+  private readonly _favoriteJobService = inject(FavoriteJobService);
 
   protected allJobs$: Observable<JobSummary[]> = this._jobService.getJobs();
 
@@ -21,14 +23,14 @@ export class JobListComponent {
    * @param jobId job id to add or delete
    */
   protected manageToggleFavorite(jobId: string): void {
-    if (this._jobService.isFavorite(jobId)) {
-      this._jobService.removeFavorite(jobId);
+    if (this._favoriteJobService.isJobFavorite(jobId)) {
+      this._favoriteJobService.removeFavorite(jobId);
     } else {
-      this._jobService.addFavorite(jobId);
+      this._favoriteJobService.addFavorite(jobId);
     }
   }
 
   protected isFavorite(jobId: string): boolean {
-    return this._jobService.isFavorite(jobId);
+    return this._favoriteJobService.isJobFavorite(jobId);
   }
 }
