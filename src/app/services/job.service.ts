@@ -7,7 +7,7 @@ export type JobSummary = Pick<Job, "id" | "companyName" | "title" | "companyLogo
 export type JobDetailed = Job;
 
 /**
- * Service des jobs qui permet de gérer les jobs et les jobs favoris.
+ * Job Service that allows us to manage the jobs and the favorite jobs.
  */
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class JobService {
   }
 
   /**
-   * @returns jobs favoris
+   * @returns favorite jobs
    */
   public getFavoriteJobs(): Observable<JobSummary[]> {
     return this.getJobs().pipe(
@@ -40,7 +40,7 @@ export class JobService {
     );
   }
 
-  /** Ajoute le job au set */
+  /** Adds the job to the Set */
   public addFavorite(jobId: string): void {
     const favorites = this._favoriteJobsIds.getValue();
     favorites.add(jobId);
@@ -49,7 +49,7 @@ export class JobService {
   }
 
 
-  /** Supprime le job au set */
+  /** Deletes the job from the Set */
   public removeFavorite(jobId: string): void {
     const favorites = this._favoriteJobsIds.getValue();
     favorites.delete(jobId);

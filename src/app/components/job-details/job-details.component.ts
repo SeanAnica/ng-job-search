@@ -19,9 +19,9 @@ export class JobDetailsComponent {
   public readonly PillColor = PillColor;
 
   protected readonly jobDetails$: Observable<JobDetailed | null> = this._activatedRoute.paramMap.pipe(
-    // switchmap pour transformer l'observable de la valeur de la route en observable content le job details.
+    // switchmap to transform the observable of the route url into an observable containing the job details.
     switchMap((params) => {
-      const jobId = params.get('jobId'); // Récupère l'id dans l'url depuis activated route
+      const jobId = params.get('jobId'); // Get the job id from the url from the activated route
       if (!jobId) return of(null);
       return this._jobService.getJobById(jobId);
     })
