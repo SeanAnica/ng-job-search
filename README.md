@@ -1,5 +1,5 @@
 # NgJobSearch
-
+This project is deployed at : [Vercel app](https://ng-job-search-seven.vercel.app/jobs).
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
 
 ## Development server
