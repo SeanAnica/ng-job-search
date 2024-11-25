@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 export class JobItemComponent {
   @Input() public job?: JobSummary;
   @Input() public isFavorite: boolean = false;
-  @Input() public readonly: boolean = false;
+  @Input() public readonly: boolean = false; // with this, the star icon doesn't appear
 
   @Output()
   public toggleFavoriteJob: EventEmitter<string> = new EventEmitter<string>();

@@ -6,13 +6,16 @@ import { Job } from '../interfaces/job';
 export type JobSummary = Pick<Job, "id" | "companyName" | "title" | "companyLogo" | "reference">;
 export type JobDetailed = Job;
 
+/**
+ * Service des jobs qui permet de gérer les jobs et les jobs favoris.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
   private _httpClient: HttpClient = inject(HttpClient);
 
-  private _jobApiUrl: string = '/jobs';
+  private readonly _jobApiUrl: string = '/jobs';
 
   private _favoriteJobsIds = new BehaviorSubject<Set<string>>(new Set());
 
@@ -29,6 +32,7 @@ export class JobService {
    */
   public getFavoriteJobs(): Observable<JobSummary[]> {
     return this.getJobs().pipe(
+      // Ici map me permet de transformer les valeurs du tableau avec un filter.
       map((jobs) =>
         jobs.filter((job) => this._favoriteJobsIds.getValue().has(job.id))
       )

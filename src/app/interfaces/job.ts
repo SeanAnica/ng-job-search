@@ -1,3 +1,4 @@
+ // pour bien différencier les strings destinés à être interprétés en html et les strings normaux
 export type html = string;
 
 export interface Job {
