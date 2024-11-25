@@ -6,11 +6,9 @@
         <img [src]="details.companyLogo" alt="Company Logo" class="me-3 rounded company-logo-style" />
         <div class="d-flex flex-column">
             <h1 class="mb-0">{{ details.title }}</h1>
-            <span>
-                <app-pill-badge *ngFor="let type of details.types" class="ms-2" [pillContent]="type"
-                    [pillColor]="PillColor.Primary" />
-                <app-pill-badge *ngFor="let industry of details.industries" class="ms-2" [pillContent]="industry"
-                    [pillColor]="PillColor.Primary" />
+            <span *ngIf="jobTypesAndIndustries$ | async as typesAndIndustries">
+                <app-pill-badge *ngFor="let type of typesAndIndustries" class="ms-2" [pillContent]="type"
+                    [pillColor]="PillColor.Secondary" />
             </span>
         </div>
     </div>
